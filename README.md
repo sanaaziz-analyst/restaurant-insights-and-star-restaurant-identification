@@ -1,6 +1,6 @@
 # Restaurant Insights & Star Restaurant Identification
 
-A data analysis project built for a restaurant consolidator looking to revamp their B2C portal. The business needed a smarter way to identify high-performing restaurants and build better recommendation logic — so I worked through the full pipeline: raw data → cleaning → SQL analysis → Tableau visuals → interactive dashboard.
+A data analysis project built for a restaurant consolidator looking to revamp their B2C portal. The business needed a smarter way to identify high performing restaurants and build better recommendation logic, so I worked through the full pipeline: raw data → cleaning → SQL analysis → Tableau visuals → interactive dashboard.
 
 The dataset covered **9,551 restaurants** across multiple countries, with 19 attributes ranging from location and cuisine type to pricing, delivery options, and customer ratings.
 
@@ -54,7 +54,7 @@ Imported the cleaned CSV into MySQL and ran analysis across five areas.
 
 **City-wise Restaurant Distribution**
 
-Wanted to understand where the restaurants are actually concentrated — useful for the consolidator to know where they have density and where there are gaps.
+Wanted to understand where the restaurants are actually concentrated, it is useful for the consolidator to know where they have density and where there are gaps.
 
 ```sql
 SELECT city, COUNT(*) AS restaurant_count
@@ -63,18 +63,17 @@ GROUP BY city
 ORDER BY restaurant_count DESC;
 ```
 
-![SQL Query](images/sql_syntax_1.png)
 
 ![City Distribution Results_1](images/sql_output_01.png)
 ![City Distribution Results_1](images/sql_output_1.png)
 
-New Delhi came out way ahead with **2,636 restaurants**, followed by Gurgaon (698) and Noida (566). The drop-off after the top three was steep — most other cities had under 20. At the bottom end, several cities had only 1 restaurants recorded. The market is extremely concentrated in the NCR region.
+New Delhi came out way ahead with **2,636 restaurants**, followed by Gurgaon (698) and Noida (566). The drop-off after the top three was steep , most other cities had under 20. At the bottom end, several cities had only 1 restaurants recorded. The market is extremely concentrated in the NCR region.
 
 ---
 
 **Franchise National Presence**
 
-Looked at which restaurant brands appear across the most cities — a key metric for any consolidator thinking about partnership or featuring decisions.
+Looked at which restaurant brands appear across the most cities, it is a a key metric for any consolidator thinking about partnership or featuring decisions.
 
 ```sql
 SELECT restaurant_name,
@@ -85,7 +84,6 @@ ORDER BY cities_present DESC
 LIMIT 10;
 ```
 
-![Franchise Query](images/sql_syntax_2.png)
 
 ![Franchise Results](images/sql_output_2.png)
 
@@ -101,7 +99,6 @@ FROM cleaned_marketing_project
 GROUP BY has_table_booking;
 ```
 
-![Table Booking Query](images/sql_syntax_3.png)
 
 ![Table Booking Results](images/sql_output_3.png)
 
@@ -117,7 +114,6 @@ SELECT
 FROM cleaned_marketing_project;
 ```
 
-![Delivery Query](images/sql_syntax_4.png)
 
 ![Delivery Result](images/sql_output_4.png)
 
@@ -136,17 +132,16 @@ SELECT
 FROM cleaned_marketing_project;
 ```
 
-![Votes Query](images/sql_syntax_5.png)
 
 ![Votes Result](images/sql_output_5.png)
 
-Restaurants **without** delivery actually accumulated more total votes (**616,469**) compared to those with delivery (**455,611**) — a difference of **-160,858**. This was the most counterintuitive finding in the SQL phase. More restaurants don't offer delivery, so the total vote pool is larger for that group. But when you look at ratings in Phase 3, the story flips — delivery restaurants rate higher even if they have fewer votes in total.
+Restaurants **without** delivery actually accumulated more total votes (**616,469**) compared to those with delivery (**455,611**) , a difference of **-160,858**. This was the most counterintuitive finding in the SQL phase. More restaurants don't offer delivery, so the total vote pool is larger for that group. But when you look at ratings in Phase 3, the story flips — delivery restaurants rate higher even if they have fewer votes in total.
 
 ---
 
 ### Phase 3 — Advanced EDA (Tableau)
 
-Moved into Tableau for the visual analysis. All charts are in the `tableau/` folder.
+Moved into Tableau for the visual analysis. All charts are in the `images/` folder.
 
 ---
 
@@ -160,7 +155,6 @@ North Indian cuisine dominates with **2,992 records**, more than 1,000 ahead of 
 
 **Cuisine Range Per Restaurant & Most Served Cuisine by City**
 
-![Cuisine by City](images/top_cuisines.png)
 
 Max cuisines served by a single restaurant: **8**. Min: **0** (restaurants with no cuisine listed, which is why the cleaning step mattered). The city-level breakdown showed strong regional variation — North Indian leads in most Indian cities, but cities like Abu Dhabi (Indian), Albany (American), and Auckland (Cafe) show how local preferences shift the picture. The table gives a full breakdown city by city.
 
@@ -247,15 +241,6 @@ The dashboard was built to answer the business question directly — not just sh
 
 Dataset sourced from a restaurant consolidator case study. All analysis, cleaning, and visualisations are my own work.
 
----
-
-## License
-
-This project is open for viewing and learning purposes. Please credit if you use any part of it.
-
----
-
-*If you found this project helpful or interesting, feel free to ⭐ star the repository — it helps others find it too!*
 
 ---
 
